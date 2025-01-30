@@ -8,6 +8,8 @@ client
   .setProject(env.appwrite.projectId)
   .setKey(env.appwrite.apiKey);
 
+
+
 const avatars = new Avatars(client);
 const databases = new Databases(client);
 const storage = new Storage(client);

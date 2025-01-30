@@ -10,6 +10,7 @@ export default async function createVoteCollection() {
     Permission.update("users"),
     Permission.delete("users"),
   ]);
+
   console.log("Vote collection created successfully!");
 
   await Promise.all([

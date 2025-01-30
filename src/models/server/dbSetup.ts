@@ -27,4 +27,6 @@ export default async function getOrCreateDB() {
       console.log("Error creating database", error);
     }
   }
+
+  return databases;
 }
