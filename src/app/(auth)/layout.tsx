@@ -1,18 +1,23 @@
 "use client"
 
 import { userAuthStore } from "@/store/Auth";
-import { useRouter } from "next/router";
+import { useRouter } from 'next/navigation'
 import { useEffect } from "react";
+import React from "react";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
     const { session } = userAuthStore();
     const router = useRouter();
+    // const [isMounted, setIsMounted] = React.useState(false);
+    // useEffect(() => {
+    //     setIsMounted(true);
+    // }, []);
 
     useEffect(() => {
         if (session) {
-            router.push("/");
+            router.push("/"); // Redirect if session exists
         }
-    }, [session, router]);
+    }, [session]);
 
     if (session) {
         return null;
