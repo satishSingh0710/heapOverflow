@@ -2,7 +2,7 @@
 
 import { userAuthStore } from '@/store/Auth'
 import React from 'react'
-import { Input, Label } from '@/components/ui/exporter'
+import { Input, Label } from "@/components/ui/exporter";
 
 
 function RegisterPage() {

@@ -89,7 +89,7 @@ export async function POST(request: NextRequest) {
           Query.equal("typeId", typeId),
           Query.equal("voteStatus", "upvoted"),
           Query.equal("votedById", votedById),
-          Query.limit(1), // for optimization as we only need total
+          Query.limit(1), 
         ]),
         databases.listDocuments(db, voteCollection, [
           Query.equal("type", type),
