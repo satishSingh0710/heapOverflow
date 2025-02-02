@@ -25,9 +25,10 @@ import React from "react";
 import DeleteQuestion from "./DeleteQuestion";
 import EditQuestion from "./EditQuestion";
 import { TracingBeam } from "@/components/ui/tracing-beam";
+// import { useSearchParams } from "next/navigation";
 
-const Page = async ({ params }: { params: { quesId: string; quesName: string } }) => {
-    const { quesId, quesName } = await Promise.resolve(params);
+const Page = async ({ params }: { params: Record<string, string> }) => {
+    const { quesId, quesName } = params;
     const [question, answers, upvotes, downvotes, comments] = await Promise.all([
         databases.getDocument(db, questionCollection, quesId),
         databases.listDocuments(db, answerCollection, [
