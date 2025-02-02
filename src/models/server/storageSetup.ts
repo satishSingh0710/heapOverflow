@@ -4,8 +4,8 @@ import { storage } from "./config";
 
 export default async function getOrCreateStorage() {
   try {
-    await storage.getBucket(questionAttachmentBucket);
-    console.log("Storage connected");
+    const created = await storage.getBucket(questionAttachmentBucket);
+    console.log("Storage connected", created);
   } catch (error) {
     try {
       await storage.createBucket(
@@ -18,7 +18,7 @@ export default async function getOrCreateStorage() {
           Permission.delete("users"),
           Permission.read("any"),
         ],
-        false,
+        false, 
         undefined,
         undefined,
         ["jpg", "png", "gif", "jpeg", "webp", "heic"]
