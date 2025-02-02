@@ -1,7 +1,8 @@
 "use client";
 
 import { databases } from "@/models/client/config";
-import { db, questionCollection } from "@/models/name";
+import { storage } from "@/models/client/config";
+import { db, questionAttachmentBucket, questionCollection } from "@/models/name";
 import { userAuthStore } from "@/store/Auth";
 import { IconTrash } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
@@ -13,6 +14,8 @@ const DeleteQuestion = ({ questionId, authorId }: { questionId: string; authorId
 
     const deleteQuestion = async () => {
         try {
+            const questionResponse = await databases.getDocument(db, questionCollection, questionId);
+            await storage.deleteFile(questionAttachmentBucket, questionResponse.attachmentId);
             await databases.deleteDocument(db, questionCollection, questionId);
 
             router.push("/questions");

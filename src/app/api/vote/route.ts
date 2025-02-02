@@ -11,11 +11,11 @@ import { ID, Query } from "node-appwrite";
 
 export async function POST(request: NextRequest) {
   try {
-    const { votedById, voteStatus, type, typeId } = await request.json();
+    const { votedBy, voteStatus, type, typeId } = await request.json();
     const response = await databases.listDocuments(db, voteCollection, [
       Query.equal("type", type),
       Query.equal("typeId", typeId),
-      Query.equal("votedById", votedById),
+      Query.equal("votedBy", votedBy),
     ]);
 
     if (response.documents.length > 0) {
@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
           type,
           typeId,
           voteStatus,
-          votedById,
+          votedBy,
         }
       );
 
@@ -88,14 +88,14 @@ export async function POST(request: NextRequest) {
           Query.equal("type", type),
           Query.equal("typeId", typeId),
           Query.equal("voteStatus", "upvoted"),
-          Query.equal("votedById", votedById),
+          Query.equal("votedBy", votedBy),
           Query.limit(1), 
         ]),
         databases.listDocuments(db, voteCollection, [
           Query.equal("type", type),
           Query.equal("typeId", typeId),
           Query.equal("voteStatus", "downvoted"),
-          Query.equal("votedById", votedById),
+          Query.equal("votedBy", votedBy),
           Query.limit(1), // for optimization as we only need total
         ]),
       ]);
@@ -116,14 +116,14 @@ export async function POST(request: NextRequest) {
         Query.equal("type", type),
         Query.equal("typeId", typeId),
         Query.equal("voteStatus", "upvoted"),
-        Query.equal("votedById", votedById),
+        Query.equal("votedBy", votedBy),
         Query.limit(1),
       ]),
       databases.listDocuments(db, voteCollection, [
         Query.equal("type", type),
         Query.equal("typeId", typeId),
         Query.equal("voteStatus", "downvoted"),
-        Query.equal("votedById", votedById),
+        Query.equal("votedBy", votedBy),
         Query.limit(1),
       ]),
     ]);
